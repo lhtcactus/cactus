@@ -1,0 +1,4 @@
+dependencies {
+    api 'com.alibaba.cloud:spring-cloud-alibaba-seata'
+    implementation project(":base:cactus-spring")
+}

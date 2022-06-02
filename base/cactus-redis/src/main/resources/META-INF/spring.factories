@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.cactus.redis.config.FeignConfigAuto,\
+  com.cactus.redis.config.LockProperties,\
+  com.cactus.redis.config.RedisCacheConfig,\
+  com.cactus.redis.config.RedisTemplateConfig,\
+  com.cactus.redis.config.RedisUnlockAllMvcConfig

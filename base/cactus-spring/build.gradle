@@ -1,0 +1,10 @@
+dependencies {
+    compileOnly "org.springframework:spring-webmvc"
+    compileOnly "org.springframework.boot:spring-boot"
+    compileOnly "org.springframework.boot:spring-boot-autoconfigure"
+    compileOnly "org.apache.tomcat.embed:tomcat-embed-core"
+    implementation project(":base:cactus-core")
+    implementation "org.hibernate.validator:hibernate-validator"
+    api 'javax.validation:validation-api'
+    implementation "org.springframework.boot:spring-boot-starter-aop"
+}

@@ -1,0 +1,2 @@
+redisLockConsumerFilter = org.cactus.configuration.redis.lock.dubbo.RedisLockConsumerFilter
+redisLockProviderFilter = org.cactus.configuration.redis.lock.dubbo.RedisLockProviderFilter

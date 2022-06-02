@@ -1,0 +1,9 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.cactus.spring.utils.SpringContextUtil,\
+  com.cactus.spring.request.filter.RequestWrapperFilter,\
+  com.cactus.spring.validator.config.ValidateExceptionProcess,\
+  com.cactus.spring.validator.config.ValidatorInterceptorRegister,\
+  com.cactus.spring.handler.DefaultGlobalExceptionHandler,\
+  com.cactus.spring.log.LogInterceptorRegister,\
+  com.cactus.spring.log.format.DefaultLogFormat,\
+  com.cactus.spring.log.exception.process.DefaultExceptionProcess

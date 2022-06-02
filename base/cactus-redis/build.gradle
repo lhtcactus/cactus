@@ -1,0 +1,11 @@
+dependencies {
+    api project(":base:cactus-core")
+    implementation project(":base:cactus-spring")
+    api "org.redisson:redisson-spring-boot-starter"
+    api 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'com.alibaba:fastjson'
+    compileOnly "org.springframework:spring-webmvc"
+    compileOnly "org.apache.tomcat.embed:tomcat-embed-core"
+    compileOnly 'com.alibaba.cloud:spring-cloud-starter-dubbo'
+    compileOnly 'io.github.openfeign:feign-hystrix'
+}

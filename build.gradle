@@ -1,0 +1,111 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+jar {
+    enabled = true
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    // 项目的默认名称和版本
+    group 'com.cactus'
+    version '0.0.1-SNAPSHOT'
+
+    // 指定仓库地址
+    repositories {
+        mavenLocal()
+        maven{url "https://maven.aliyun.com/repository/central"}
+        mavenCentral()
+        google()
+    }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+
+    publishing {
+        publications {
+            myPublish(MavenPublication){
+                from components.java
+            }
+        }
+    }
+
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+
+
+//    sourceSets {
+//        main {
+//            resources {
+//                //可以将java目录下的所有非.java资源打包到classes下
+//                srcDirs = ['src/main/resources']
+//            }
+//        }
+//    }
+
+    //指定编码
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+    // 指定JDK版本
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    //依赖管理
+    dependencyManagement {
+
+        // 导入SpringBoot和SpringAlibabaCloud依赖Bom
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.4.2'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2020.0.4'
+            mavenBom 'com.alibaba.cloud:spring-cloud-alibaba-dependencies:2021.1'
+        }
+
+        // dependencyManagement第三方依赖
+        dependencies {
+            dependency 'org.apache.commons:commons-lang3:3.12.0'
+            dependency 'com.baomidou:mybatis-plus-core:3.4.3.4'
+            dependency 'com.baomidou:mybatis-plus-boot-starter:3.4.3.4'
+            dependency 'org.redisson:redisson-spring-boot-starter:3.16.3'
+            dependency 'com.alibaba:druid-spring-boot-starter:1.2.8'
+            dependency 'com.alibaba:fastjson:1.2.78'
+            dependency 'com.alibaba.cloud:spring-cloud-alibaba-seata:2.2.0.RELEASE'
+            dependency 'io.seata:seata-spring-boot-starter:1.4.2'
+            dependency 'io.springfox:springfox-swagger2:3.0.0'
+            dependency 'com.github.xiaoymin:knife4j-spring-ui:2.0.5'
+            dependency 'com.esotericsoftware:kryo:4.0.2'
+            dependency 'com.esotericsoftware.kryo:kryo:2.21'
+            dependency 'de.javakaffee:kryo-serializers:0.44'
+        }
+    }
+    //项目默认引入依赖
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.20'
+        annotationProcessor 'org.projectlombok:lombok:1.18.20'
+        api 'cn.hutool:hutool-all:5.7.13'
+        api 'org.slf4j:slf4j-api'
+        api 'org.springframework:spring-core'
+        api 'com.alibaba:transmittable-thread-local:2.12.4'
+    }
+
+    //类似classes任务，将resources复制到构建区
+    task copyResources(type:Copy){
+        from "${projectDir}/src/main/resources"
+        into "${buildDir}/resources/main"
+    }
+    //项目准备完之后，指定compileJava任务的依赖为copyResources，实现运行前执行copyResources任务
+    project.afterEvaluate {
+        compileJava.dependsOn("copyResources")
+    }
+}
