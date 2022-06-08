@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author lht
  * @since 2022/6/2 9:52 下午
  */
+@SuppressWarnings("unchecked")
 public class BeanManager {
     private static final ConcurrentHashMap<Class<?>,Object> BEAN_MAP = new ConcurrentHashMap<>(16);
 

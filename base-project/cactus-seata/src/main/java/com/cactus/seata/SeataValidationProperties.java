@@ -28,7 +28,7 @@ public class SeataValidationProperties {
      *
      * 任意一个集合满足条件就通过
      */
-    private String[][] c;
+    private String[][] fieldsGroups;
     /**
      * 是否启用 true/false default true
      */
