@@ -1,6 +1,6 @@
 dependencies {
-    api project(":base:cactus-core")
-    implementation project(":base:cactus-spring")
+    implementation project(":base-project:cactus-core")
+    implementation project(":base-project:cactus-spring")
     api "org.redisson:redisson-spring-boot-starter"
     api 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'com.alibaba:fastjson'

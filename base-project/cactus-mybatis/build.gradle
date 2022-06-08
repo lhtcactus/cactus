@@ -1,5 +1,5 @@
 dependencies {
+    implementation project(":base-project:cactus-core")
     api "com.baomidou:mybatis-plus-core"
     api "com.baomidou:mybatis-plus-boot-starter"
-    api project(":base:cactus-core")
 }

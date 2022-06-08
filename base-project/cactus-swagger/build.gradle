@@ -1,5 +1,5 @@
 dependencies {
-    implementation project(":base:cactus-core")
+    implementation project(":base-project:cactus-core")
     api 'io.springfox:springfox-swagger2'
     api 'com.github.xiaoymin:knife4j-spring-ui'
     compileOnly "org.springframework.cloud:spring-cloud-context"
